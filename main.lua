@@ -21,7 +21,7 @@ function main()
   end
 
   -- The memory address of the 'Enable XBOX 360 Movement' in the 'CONTROLS' menu
-  local userdata = ptr('0x020CECE8') --[[@as table]]
+  local userdata = ptr('0x020CECE8') --[[@as userdata]]
 
   while true do
     Wait(0)
@@ -32,12 +32,12 @@ function main()
       or IsAnyMouseButtonJustPressed()
       or IsAnyKeyJustPressed()
     then
-      userdata.int32 = 0 -- disable
+      SetInt32(userdata, 0) -- disable
 
-    -- Check the other input controller
-    -- 0: keyboard (controlling the player), 1: the second input controller
+      -- Check the other input controller
+      -- 0: keyboard (controlling the player), 1: the second input controller
     elseif IsAnyButtonPressed(1) then
-      userdata.int32 = 1 -- enable
+      SetInt32(userdata, 1) -- enable
     end
   end
 end
