@@ -1,8 +1,12 @@
 # Auto Input Switch
 
-[![Mod Thumbnail](https://staticdelivery.nexusmods.com/mods/___.png)](https://www.nexusmods.com/bullyscholarshipedition/mods/xxx)
+[![Mod Thumbnail](https://staticdelivery.nexusmods.com/mods/3089/images/194/194-1747544641-1059626819.png)](https://nexusmods.com/bullyscholarshipedition/mods/194)
 
-# [Download](https://www.nexusmods.com/bullyscholarshipedition/mods/xxx)
+## Download
+
+| Nexus Mods                                                                                                                                            | Mirror                                                                                                        |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| [![Download](https://img.shields.io/badge/Download-NEXUSMODS-yellow?style=for-the-badge)](https://www.nexusmods.com/bullyscholarshipedition/mods/194) | [![Download](https://img.shields.io/badge/Download-MIRROR-blue?style=for-the-badge)](https://sfl.gl/7GnpiudY) |
 
 ## Description
 
