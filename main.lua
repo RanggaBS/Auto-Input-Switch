@@ -22,8 +22,14 @@ function main()
     Wait(0)
   end
 
+  -- Searching the memory address using Cheat Engine
+
   -- The memory address of the 'Enable XBOX 360 Movement' in the 'CONTROLS' menu
-  local xboxMovementAddr = ptr('0x020CECE8') --[[@as userdata]]
+  -- 0: enabled, 1: disabled
+  local xboxMovePtr = ptr('0x00BC7490') --[[@as userdata]]
+
+  -- The current address of the input controller - 0: kbm, 1: gamepad
+  local ctrlPtr = ptr('0x020CECE8') --[[@as userdata]]
 
   -- Local variables
   local isMkbActive, isGamepadActive, targetSettingValue
@@ -45,7 +51,7 @@ function main()
     targetSettingValue = isMkbActive and 0 or isGamepadActive and 1 or nil
 
     if targetSettingValue ~= nil then
-      Util.UpdateXboxMovementSetting(xboxMovementAddr, targetSettingValue)
+      Util.UpdateXboxMovementSetting(xboxMovePtr, ctrlPtr, targetSettingValue)
     end
   end
 end
@@ -54,23 +60,28 @@ end
 -- Helper Functions                                                           --
 -- -------------------------------------------------------------------------- --
 
----@param udata userdata
+---@param xboxMovePtr userdata
+---@param ctrlPtr userdata
 ---@param targetInt integer
-function Util.UpdateXboxMovementSetting(udata, targetInt)
+function Util.UpdateXboxMovementSetting(xboxMovePtr, ctrlPtr, targetInt)
   local isBullyBytesLoaded = type(SetInt32) == 'function'
     and type(GetInt32) == 'function'
 
-  local currentValue = isBullyBytesLoaded and GetInt32(udata)
-    or tonumber(tostring(udata.int32)) -- type(udata.int32) == 'userdata'
+  local currentValue = isBullyBytesLoaded and GetInt32(ctrlPtr)
+    or tonumber(tostring(ctrlPtr.int32)) -- type(xboxMovePtr.int32) == 'userdata'
 
   if currentValue == targetInt then return end
 
+  local inverse = targetInt == 1 and 0 or 1
+
   if isBullyBytesLoaded then
-    SetInt32(udata, targetInt)
+    SetInt32(ctrlPtr, targetInt)
+    SetInt32(xboxMovePtr, inverse)
     return
   end
 
-  udata.int32 = targetInt
+  ctrlPtr.int32 = targetInt
+  xboxMovePtr.int32 = inverse
 end
 
 ---@param ctrlId 0|1|2|3
