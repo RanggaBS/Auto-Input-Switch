@@ -1,0 +1,20 @@
+[size=6][b]Description[/b][/size]
+
+Auto Input Switch is a quality-of-life mod for Bully: Scholarship Edition that automatically detects and switches control input between keyboard and Xbox 360 controller. It removes the need to manually change settings, making transitions between devices seamless.
+
+[size=5][b]Important note:[/b][/size]
+Make sure your controller is connected to your PC before launching the game to ensure proper detection.
+
+[size=6][b]Requirement[/b][/size]
+
+Latest version of [url=https://www.nexusmods.com/bullyscholarshipedition/mods/43]Derpy Script Loader[/url]. v10 or greater.
+
+[size=6][b]Installation[/b][/size]
+
+[list=1]1. Extract the archive
+2. Move the [b][code]AutoInputSwitch.lua[/code][/b] file to [code](bully_game_directory)/_derpy_script_loader/scripts/(here)[/code]
+[/list]
+
+[size=6][b]Source Code[/b][/size]
+
+[url=https://github.com/RanggaBS/Auto-Input-Switch]GitHub[/url]
