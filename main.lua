@@ -18,42 +18,40 @@ local Util = {}
 -- -------------------------------------------------------------------------- --
 
 function main()
-  while not SystemIsReady() do
-    Wait(0)
-  end
+  CreateSystemThread(function(...)
+    -- Memory address is found by using Cheat Engine
 
-  -- Searching the memory address using Cheat Engine
+    -- The memory address of the 'Enable XBOX 360 Movement' in the 'CONTROLS' menu
+    -- 0: enabled, 1: disabled
+    local xboxMovePtr = ptr('0x00BC7490') --[[@as userdata]]
 
-  -- The memory address of the 'Enable XBOX 360 Movement' in the 'CONTROLS' menu
-  -- 0: enabled, 1: disabled
-  local xboxMovePtr = ptr('0x00BC7490') --[[@as userdata]]
+    -- The current address of the input controller - 0: kbm, 1: gamepad
+    local ctrlPtr = ptr('0x020CECE8') --[[@as userdata]]
 
-  -- The current address of the input controller - 0: kbm, 1: gamepad
-  local ctrlPtr = ptr('0x020CECE8') --[[@as userdata]]
+    -- Local variables
+    local isMkbActive, isGamepadActive, targetSettingValue
 
-  -- Local variables
-  local isMkbActive, isGamepadActive, targetSettingValue
+    while true do
+      Wait(0)
 
-  while true do
-    Wait(0)
+      isMkbActive = Util.IsMouseMoving()
+        or Util.IsAnyMouseButtonJustPressed()
+        or Util.IsAnyKeyJustPressed()
 
-    isMkbActive = Util.IsMouseMoving()
-      or Util.IsAnyMouseButtonJustPressed()
-      or Util.IsAnyKeyJustPressed()
+      -- Controller ID 1 is typically the first gamepad.
+      -- Controller ID 0 is usually keyboard/mouse for player control.
+      isGamepadActive = Util.IsAnyButtonPressed(1)
 
-    -- Controller ID 1 is typically the first gamepad.
-    -- Controller ID 0 is usually keyboard/mouse for player control.
-    isGamepadActive = Util.IsAnyButtonPressed(1)
+      -- If mouse/keyboard is active, target is 0 (disable Xbox movement).
+      -- Else if gamepad is active, target is 1 (enable Xbox movement).
+      -- Else, target is nil (no change/update).
+      targetSettingValue = isMkbActive and 0 or isGamepadActive and 1 or nil
 
-    -- If mouse/keyboard is active, target is 0 (disable Xbox movement).
-    -- Else if gamepad is active, target is 1 (enable Xbox movement).
-    -- Else, target is nil (no change/update).
-    targetSettingValue = isMkbActive and 0 or isGamepadActive and 1 or nil
-
-    if targetSettingValue ~= nil then
-      Util.UpdateXboxMovementSetting(xboxMovePtr, ctrlPtr, targetSettingValue)
+      if targetSettingValue ~= nil then
+        Util.UpdateXboxMovementSetting(xboxMovePtr, ctrlPtr, targetSettingValue)
+      end
     end
-  end
+  end)
 end
 
 -- -------------------------------------------------------------------------- --
