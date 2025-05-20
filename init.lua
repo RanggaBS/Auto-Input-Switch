@@ -1,8 +1,8 @@
 --[[
-Main script
+Init script
 
-Runs right after the game's script manager is setup, and before the game's
-main.lur starts. Happens again when the game restarts.
+Runs once when the game is loaded, which is when the main menu is reached for
+the first time. Game functions are unavailable.
 ]]
 
 -- -------------------------------------------------------------------------- --
@@ -35,35 +35,14 @@ LoadScript('API.lua')
 local ais = AUTO_INPUT_SWITCH
 
 -- -------------------------------------------------------------------------- --
--- Start                                                                      --
+-- Create Thread                                                              --
 -- -------------------------------------------------------------------------- --
--- Immediately run the script once in main menu
--- Not inside `main()` function, as this function starts immediately 'after'
--- main menu, not while in main menu.
+-- Runs once when in the main menu for the first time (game launch)
 
-ais.Thread.Main = CreateSystemThread(function()
+ais.Thread.Init = CreateSystemThread(function()
   local autoInputSwitch = ais.GetSingleton()
   while true do
     Wait(0)
     autoInputSwitch:MainLogic()
   end
 end)
-
--- -------------------------------------------------------------------------- --
--- On Script Shutdown                                                         --
--- -------------------------------------------------------------------------- --
-
-function MissionCleanup()
-  -- ------------------------------------------------------------------------ --
-  -- Terminate Thread                                                         --
-  -- ------------------------------------------------------------------------ --
-
-  if ais.Thread.Init then TerminateThread(ais.Thread.Init) end
-  if ais.Thread.Main then TerminateThread(ais.Thread.Main) end
-
-  -- ------------------------------------------------------------------------ --
-  -- Clear Global Variable                                                    --
-  -- ------------------------------------------------------------------------ --
-
-  _G.AUTO_INPUT_SWITCH = nil
-end
