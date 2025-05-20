@@ -13,6 +13,16 @@ Latest version of [url=https://www.nexusmods.com/bullyscholarshipedition/mods/43
 
 [size=6][b]Installation[/b][/size]
 
+[size=5][b]v1.2.0+[/b][/size]
+
+[list=1]1. Extract the archive
+2. Move the [b][code]AutoInputSwitch.lua[/code][/b] file to [code](bully_game_directory)/_derpy_script_loader/scripts/(here)[/code]
+3. Download and extract the [b]Main Menu Overhaul[/b] mod file
+4. Move the [b][code]MainMenu.dll[/code][/b] file to [code](bully_game_directory)/_derpy_script_loader/packages/(here)[/code]
+[/list]
+
+[size=5][b]v1.1.2[/b][/size]
+
 [list=1]1. Extract the archive
 2. Move the [b][code]AutoInputSwitch.lua[/code][/b] file to [code](bully_game_directory)/_derpy_script_loader/scripts/(here)[/code]
 [/list]
