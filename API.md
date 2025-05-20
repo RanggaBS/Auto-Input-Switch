@@ -1,6 +1,6 @@
 # Auto Input Switch API Documentation
 
-This document describes the functions exposed by the AutoInputSwitch mod through the `AUTO_INPUT_SWITCH.API` table. This API allows other scripts to interact with the core functionalities of AutoInputSwitch, such as getting the current input status, relevant memory pointers, detecting input, and listening to status change events.
+This document describes the functions exposed by the **Auto Input Switch** mod through the `AUTO_INPUT_SWITCH.API` table. This API allows other scripts to interact with the core functionalities of `AutoInputSwitch`, such as getting the current input status, relevant memory pointers, detecting input, and listening to status change events.
 
 ## Getting Instances
 
@@ -16,7 +16,7 @@ local autoInputSwitchInstance = AUTO_INPUT_SWITCH.API.GetSingleton()
 
 ### `GetEventManager()`
 
-Returns the instance of `EventManager` used by AutoInputSwitch. This is useful for adding or removing event listeners.
+Returns the instance of `EventManager` used by `AutoInputSwitch`. This is useful for adding or removing event listeners.
 
 ```lua
 local eventManager = AUTO_INPUT_SWITCH.API.GetEventManager()
@@ -116,7 +116,7 @@ end
 
 ## Event Handling
 
-The API provides a way to listen for events emitted by the mod, such as changes in the active controller or the AutoInputSwitch status.
+The API provides a way to listen for events emitted by the mod, such as changes in the active controller or the `AutoInputSwitch` status.
 
 ### `AddEventListener(eventName, callback)`
 
@@ -124,7 +124,7 @@ Adds a listener (callback function) for a specific event.
 
 ```lua
 local function onControllerChanged(newController, oldController)
-`print("Controller changed from " .. oldController .. " to " .. newController)
+  print("Controller changed from " .. oldController .. " to " .. newController)
 end
 
 AUTO_INPUT_SWITCH.API.AddEventListener('OnControllerChanged', onControllerChanged)
@@ -136,7 +136,7 @@ AUTO_INPUT_SWITCH.API.AddEventListener('OnControllerChanged', onControllerChange
 
 ### `RemoveEventListener(eventName, callback)`
 
-Removes a listener (callback function) from a specific event. The provided callback must be the exact same function used during AddEventListener.
+Removes a listener (callback function) from a specific event. The provided callback must be the exact same function used during `AddEventListener`.
 
 ```lua
 -- To remove the previously added listener:
@@ -154,5 +154,5 @@ The following events can be listened to using `AddEventListener`:
 
 - `OnControllerChanged`: Emitted when the mod detects a change between Keyboard/Mouse and Gamepad input, and the in-game movement setting is updated.
   - Callback receives arguments: `(newController: 'keyboard'|'gamepad', oldController: 'keyboard'|'gamepad')`
-- `OnAutoSwitchStateChanged`: Emitted when the isEnabled status of the AutoInputSwitch instance changes (e.g., via SetEnabled).
+- `OnAutoSwitchStateChanged`: Emitted when the `isEnabled` status of the `AutoInputSwitch` instance changes (e.g., via `SetEnabled`).
   - Callback receives arguments: `(isEnabled: boolean, oldState: boolean)`
