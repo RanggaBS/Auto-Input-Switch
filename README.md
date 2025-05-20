@@ -18,6 +18,10 @@ Auto Input Switch is a quality-of-life mod for Bully: Scholarship Edition that a
 
 Make sure your controller is connected to your PC before launching the game to ensure proper detection.
 
+## API Documentation
+
+For developers looking to integrate with or extend this mod, the API documentation can be found [here](./API.md).
+
 ## Changelog
 
 ### Version 1.2.0
