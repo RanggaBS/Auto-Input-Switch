@@ -20,6 +20,12 @@ Make sure your controller is connected to your PC before launching the game to e
 
 ## Changelog
 
+### Version 1.2.0
+
+- feat,refactor: Enable input control switching while in title screen menu
+
+- Now requires `MainMenu.dll` that comes from [Main Menu Overhaul](https://nexusmods.com/bullyscholarshipedition/mods/48) mod to be able to listen for inputs while in title screen menu for the first time (booting the game, not go back to title screen from pause menu)
+
 ### Version 1.1.2
 
 - fix: Couldn't switch input while in pause/map menu
